@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Emoji from "./Emoji";
+import "./App.css";
 
+let emojis = [];
+
+function listAllEmojis() {
+  for (let hexCode = 0x1f601; hexCode <= 0x1f64f; hexCode++) {
+    emojis.push(hexCode);
+  }
+}
 function App() {
+  listAllEmojis();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Emoji Book</h1>
+      <div className="emojis-list">
+        {emojis.map((emoji) => (
+          <Emoji hexCode={emoji} />
+        ))}
+      </div>
     </div>
   );
 }
